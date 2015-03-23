@@ -9,15 +9,15 @@ ADD config/mongoid.tmpl /etc/confd/templates/mongoid.tmpl
 ADD script/start /usr/local/bin/start
 RUN chmod +x /usr/local/bin/start
 
-RUN mkdir -p /getmambo
+RUN mkdir -p /campus
 
-ADD Gemfile /getmambo/Gemfile
-ADD Gemfile.lock /getmambo/Gemfile.lock
+ADD Gemfile /campus/Gemfile
+ADD Gemfile.lock /campus/Gemfile.lock
 
-WORKDIR /getmambo
+WORKDIR /campus
 RUN bundle install
 
-ADD . /getmambo
+ADD . /campus
 
 ADD nginx/global.conf /etc/nginx/conf.d/
 ADD nginx/nginx.conf /etc/nginx/nginx.conf
