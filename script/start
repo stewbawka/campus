@@ -6,11 +6,11 @@ export ETCD_PORT=${ETCD_PORT:-4001}
 export HOST_IP=${HOST_IP:-172.17.42.1}
 export ETCD=$HOST_IP:$ETCD_PORT
 
-echo "[getmambo] booting container. ETCD: $ETCD"
+echo "[campus] booting container. ETCD: $ETCD"
 
 # Try to make initial configuration every 5 seconds until successful
 until confd -onetime -node $ETCD -config-file /etc/confd/conf.d/mongoid.toml; do
-  echo "[getmambo] waiting for confd to create initial mongoid configuration"
+  echo "[campus] waiting for confd to create initial mongoid configuration"
   sleep 5
 done
 
@@ -22,7 +22,7 @@ service nginx start
 # Put a continual polling `confd` process into the background to watch
 # for changes every 10 seconds
 confd -interval 10 -node $ETCD -config-file /etc/confd/conf.d/mongoid.toml &
-echo "[getmambo] confd is now monitoring etcd for changes..."
+echo "[campus] confd is now monitoring etcd for changes..."
 
 #nginx and unicorn daemonized.. follow rails log..
 tail -f log/production.log
