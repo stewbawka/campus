@@ -5,7 +5,7 @@
 src = "mongoid.tmpl"
 
 # The location to place the rendered configuration file
-dest = "/getmambo/config/mongoid.yml"
+dest = "/campus/config/mongoid.yml"
 
 # The etcd keys or directory to watch.  This is where the information to fill in
 # the template will come from.
@@ -15,4 +15,4 @@ keys = [ "/services/mongo" ]
 owner = "root"
 mode = "0644"
 
-reload_cmd = "[ -f /getmambo/shared/pids/unicorn.pid ] && kill -USR2 `cat /getmambo/shared/pids/unicorn.pid`"
+reload_cmd = "[ -f /campus/shared/pids/unicorn.pid ] && kill -USR2 `cat /campus/shared/pids/unicorn.pid`"
