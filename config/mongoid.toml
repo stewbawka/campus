@@ -1,0 +1,18 @@
+[template]
+
+# The name of the template that will be used to render the application's configuration file
+# Confd will look in `/etc/conf.d/templates` for these files by default
+src = "mongoid.tmpl"
+
+# The location to place the rendered configuration file
+dest = "/getmambo/config/mongoid.yml"
+
+# The etcd keys or directory to watch.  This is where the information to fill in
+# the template will come from.
+keys = [ "/services/mongo" ]
+
+# File ownership and mode information
+owner = "root"
+mode = "0644"
+
+reload_cmd = "[ -f /getmambo/shared/pids/unicorn.pid ] && kill -USR2 `cat /getmambo/shared/pids/unicorn.pid`"

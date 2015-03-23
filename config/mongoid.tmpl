@@ -1,0 +1,32 @@
+development:
+  sessions:
+    default:
+      database: locomotive_dev
+      hosts:
+        - <%= ENV.fetch('MONGODB_PORT_27017_TCP_ADDR', 'localhost') %>:<%= ENV.fetch('MONGODB_PORT_27017_TCP_PORT', '27017') %>
+  options:
+    identity_map_enabled: true
+
+test:
+  sessions:
+    default:
+      database: locomotive_test
+      hosts:
+        - localhost:27017
+  options:
+    identity_map_enabled: true
+
+production:
+  sessions:
+    default:
+      database: locomotive_production
+      hosts:
+{{ range getvs "/services/mongo/*" }}
+        - {{ . }}
+{{ end }}
+      options:
+        max_retries: 30
+        retry_interval: 1
+        timeout: 15
+  options:
+    identity_map_enabled: true
