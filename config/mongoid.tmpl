@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: locomotive_dev
+      database: campus_cms_dev
       hosts:
         - <%= ENV.fetch('MONGODB_PORT_27017_TCP_ADDR', 'localhost') %>:<%= ENV.fetch('MONGODB_PORT_27017_TCP_PORT', '27017') %>
   options:
@@ -10,7 +10,7 @@ development:
 test:
   sessions:
     default:
-      database: locomotive_test
+      database: campus_cms_test
       hosts:
         - localhost:27017
   options:
@@ -19,7 +19,7 @@ test:
 production:
   sessions:
     default:
-      database: locomotive_production
+      database: campus_cms_production
       hosts:
 {{ range getvs "/services/mongo/*" }}
         - {{ . }}
