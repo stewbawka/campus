@@ -18,6 +18,7 @@ WORKDIR /campus
 RUN bundle install
 
 ADD . /campus
+RUN bundle exec rake assets:precompile
 
 ADD nginx/global.conf /etc/nginx/conf.d/
 ADD nginx/nginx.conf /etc/nginx/nginx.conf

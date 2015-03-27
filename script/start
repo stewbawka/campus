@@ -15,7 +15,6 @@ until confd -onetime -node $ETCD -config-file /etc/confd/conf.d/mongoid.toml; do
 done
 
 ./script/setup
-bundle exec rake assets:precompile
 bundle exec unicorn -D -c config/unicorn.rb
 service nginx start
 
